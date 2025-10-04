@@ -9,10 +9,10 @@ fn main() {
     X.store(2, Ordering::Relaxed);
     t.join().unwrap();
     X.store(3, Ordering::Relaxed);
-    println!("Hello, world!");
 }
 
 fn f() {
     let x = X.load(Ordering::Relaxed);
-    assert!(x == 1 || x == 2);
+    println!("x: {}", x);
+    assert!(x == 1 || x == 2); // 断言：变量x的值必须等于1或者等于2。
 }

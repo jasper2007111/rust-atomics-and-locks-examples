@@ -25,7 +25,7 @@ fn main() {
     thread::sleep(std::time::Duration::from_millis(500));
     let ready: [bool; 10] = std::array::from_fn(|i| READY[i].load(Ordering::Relaxed));
     if ready.contains(&true) {
-        fence(Ordering::Acquire);
+        fence(Ordering::Acquire); // 确保看到所有线程的写入
         for i in 0..10 {
             if ready[i] {
                 println!("DATA[{}]: {}", i, unsafe { DATA[i] });
